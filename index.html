@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="theme-color" content="#6d28d9">
 <title>Gen Z Shop | অনলাইন শপ</title>
+
 <script src="https://cdn.tailwindcss.com"></script>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script src="config.js"></script>
@@ -12,10 +13,10 @@
 <style>
 :root{--brand:#6d28d9;--ink:#171326}
 *{box-sizing:border-box}
-body{margin:0;background:#f7f6fb;color:var(--ink);font-family:system-ui,-apple-system,"Noto Sans Bengali",sans-serif}
+body{margin:0;background:#f7f6fb;color:var(--ink);font-family:system-ui,"Noto Sans Bengali",sans-serif}
 .brand{background:linear-gradient(120deg,#6d28d9,#9333ea)}
-.logo{width:42px;height:42px;border-radius:14px;background:#fff;color:#6d28d9;display:grid;place-items:center;font-weight:1000;font-size:17px;box-shadow:0 5px 18px #240b4d33}
-.card{background:white;border:1px solid #eeeaf5;border-radius:18px;overflow:hidden;box-shadow:0 5px 20px #24104408}
+.logo{width:42px;height:42px;border-radius:14px;background:white;color:#6d28d9;display:grid;place-items:center;font-weight:1000}
+.card{background:white;border:1px solid #eeeaf5;border-radius:18px;overflow:hidden}
 .btn{border-radius:12px;padding:10px 14px;font-weight:750}
 .primary{background:#6d28d9;color:white}
 .muted{color:#77718a}
@@ -26,8 +27,10 @@ body{margin:0;background:#f7f6fb;color:var(--ink);font-family:system-ui,-apple-s
 .modalbox{background:white;border-radius:20px;padding:22px;width:min(100%,430px);max-height:90vh;overflow:auto}
 .field{width:100%;border:1px solid #ddd6e9;border-radius:11px;padding:11px;margin:5px 0 12px;outline-color:#8b5cf6}
 .splash{position:fixed;inset:0;background:#6d28d9;z-index:100;display:grid;place-items:center;color:white;animation:hide .6s ease 1.25s forwards}
-.splash-logo{width:88px;height:88px;border-radius:28px;background:white;color:#6d28d9;display:grid;place-items:center;font-size:32px;font-weight:1000;margin:auto;box-shadow:0 10px 40px #260b4e66}
+.splash-logo{width:88px;height:88px;border-radius:28px;background:white;color:#6d28d9;display:grid;place-items:center;font-size:32px;font-weight:1000;margin:auto}
 @keyframes hide{to{opacity:0;visibility:hidden}}
+.coupon-success{color:#15803d;background:#dcfce7;padding:10px;border-radius:10px}
+.coupon-error{color:#b91c1c;background:#fee2e2;padding:10px;border-radius:10px}
 </style>
 </head>
 
@@ -37,8 +40,8 @@ body{margin:0;background:#f7f6fb;color:var(--ink);font-family:system-ui,-apple-s
 <div class="text-center">
 <div class="splash-logo">GZ</div>
 <div class="text-2xl font-black mt-4">Gen Z Shop</div>
-<div class="text-sm opacity-80 mt-1">Shopping made simple</div>
-<div class="mt-5 text-xs opacity-80">লোড হচ্ছে…</div>
+<div class="text-sm mt-2">Shopping made simple</div>
+<div class="mt-5 text-xs">লোড হচ্ছে…</div>
 </div>
 </div>
 
@@ -46,31 +49,29 @@ body{margin:0;background:#f7f6fb;color:var(--ink);font-family:system-ui,-apple-s
 <div class="max-w-7xl mx-auto px-3 py-3 flex items-center gap-3">
 <a href="index.html" class="flex items-center gap-2 shrink-0">
 <span class="logo">GZ</span>
-<span class="font-black leading-tight">Gen Z<br><small class="font-medium">SHOP</small></span>
+<span class="font-black">Gen Z<br><small>SHOP</small></span>
 </a>
-<div class="flex-1 relative">
-<input id="search" class="w-full rounded-xl py-2.5 pl-4 pr-10 text-gray-800 outline-none" placeholder="পণ্য খুঁজুন…">
-<span class="absolute right-3 top-2.5 text-gray-500">⌕</span>
+
+<div class="flex-1">
+<input id="search" class="w-full rounded-xl py-2.5 px-4 text-gray-800 outline-none" placeholder="পণ্য খুঁজুন…">
 </div>
+
 <button id="accountBtn" class="text-sm font-bold">লগইন</button>
 <button id="cartBtn" class="bg-white/15 rounded-xl px-3 py-2 font-bold">🛒 <span id="cartCount">0</span></button>
 </div>
 </header>
 
 <section class="max-w-7xl mx-auto px-3 pt-4">
-<div class="rounded-3xl brand text-white p-6 md:p-10 relative overflow-hidden">
-<div class="relative z-10 max-w-xl">
+<div class="rounded-3xl brand text-white p-6 md:p-10">
 <span class="bg-white/20 rounded-full px-3 py-1 text-xs">WELCOME TO GEN Z SHOP</span>
 <h1 class="text-3xl md:text-5xl font-black mt-4">আপনার পছন্দের<br>সবকিছু এক জায়গায়</h1>
-<p class="mt-3 text-white/85">সহজে পণ্য খুঁজুন, অর্ডার করুন নিশ্চিন্তে।</p>
+<p class="mt-3">সহজে পণ্য খুঁজুন, অর্ডার করুন নিশ্চিন্তে।</p>
 <a href="#products" class="inline-block bg-white text-purple-800 font-bold rounded-xl px-5 py-3 mt-5">কেনাকাটা শুরু করুন →</a>
-</div>
-<div class="absolute -right-8 -bottom-20 text-[190px] opacity-10 font-black">GZ</div>
 </div>
 </section>
 
 <section class="max-w-7xl mx-auto px-3 py-5">
-<div class="flex items-center justify-between gap-3">
+<div class="flex justify-between">
 <h2 class="font-black text-xl">ক্যাটাগরি</h2>
 <button id="allCats" class="text-purple-700 text-sm font-bold">সব পণ্য</button>
 </div>
@@ -89,101 +90,146 @@ body{margin:0;background:#f7f6fb;color:var(--ink);font-family:system-ui,-apple-s
 <div id="empty" class="hidden text-center py-16 muted">এখনো কোনো পণ্য যোগ করা হয়নি।</div>
 </main>
 
-<!-- Footer: Admin Panel link removed -->
 <footer class="bg-[#19132a] text-white">
-<div class="max-w-7xl mx-auto px-4 py-8 flex flex-col sm:flex-row justify-between gap-4">
+<div class="max-w-7xl mx-auto px-4 py-8 flex justify-between gap-4">
 <div>
 <div class="font-black text-xl">Gen Z Shop</div>
 <p class="text-white/60 text-sm mt-2">আপনার অনলাইন কেনাকাটার ঠিকানা।</p>
 </div>
-<div class="text-sm text-white/70">© <span id="year"></span> Gen Z Shop. All rights reserved.</div>
+<div class="text-sm text-white/70">© <span id="year"></span> Gen Z Shop</div>
 </div>
 </footer>
 
+<!-- Login -->
 <div id="authModal" class="modal">
 <div class="modalbox">
-<div class="flex justify-between items-center">
+<div class="flex justify-between">
 <h3 class="font-black text-xl">অ্যাকাউন্ট</h3>
 <button class="close text-2xl">×</button>
 </div>
+
 <div class="flex gap-2 my-4">
 <button id="loginTab" class="btn primary flex-1">লগইন</button>
-<button id="signupTab" class="btn bg-purple-50 text-purple-800 flex-1">নতুন অ্যাকাউন্ট</button>
+<button id="signupTab" class="btn bg-purple-50 flex-1">নতুন অ্যাকাউন্ট</button>
 </div>
+
 <form id="authForm">
-<label class="text-sm font-bold">ইমেইল</label>
-<input id="authEmail" class="field" type="email" required autocomplete="email">
-<label class="text-sm font-bold">পাসওয়ার্ড</label>
-<input id="authPassword" class="field" type="password" minlength="6" required autocomplete="current-password">
+<label>ইমেইল</label>
+<input id="authEmail" class="field" type="email" required>
+<label>পাসওয়ার্ড</label>
+<input id="authPassword" class="field" type="password" minlength="6" required>
 <button id="authSubmit" class="btn primary w-full">লগইন করুন</button>
 </form>
 <p id="authMsg" class="text-sm mt-3"></p>
 </div>
 </div>
 
+<!-- Cart -->
 <div id="cartModal" class="modal">
 <div class="modalbox">
+
 <div class="flex justify-between">
 <h3 class="font-black text-xl">আপনার কার্ট</h3>
 <button class="close text-2xl">×</button>
 </div>
+
 <div id="cartItems" class="my-4"></div>
-<div class="border-t pt-3 flex justify-between font-black">
-<span>মোট</span>
+
+<div class="border-t pt-3 space-y-2">
+<div class="flex justify-between">
+<span>সাবটোটাল</span>
+<b id="cartSubtotal">৳০</b>
+</div>
+
+<div class="border rounded-xl p-3">
+<h4 class="font-bold mb-2">🎟️ কুপন কোড</h4>
+<div class="flex gap-2">
+<input id="couponInput" class="field !mb-0" placeholder="কুপন কোড লিখুন">
+<button id="applyCoupon" class="btn primary">Apply</button>
+</div>
+<p id="couponMsg" class="text-sm mt-2"></p>
+</div>
+
+<div class="flex justify-between text-green-700">
+<span>ডিসকাউন্ট</span>
+<b id="discountAmount">৳০</b>
+</div>
+
+<div class="flex justify-between text-xl font-black">
+<span>সর্বমোট</span>
 <span id="cartTotal">৳০</span>
 </div>
+</div>
+
 <button id="checkout" class="btn primary w-full mt-4">অর্ডার সম্পন্ন করুন</button>
 <p id="cartMsg" class="text-sm mt-2"></p>
+
 </div>
 </div>
 
 <script>
 const cfg=window.GENZ_CONFIG||{};
-let db=null,products=[],cart={},category='সব পণ্য',authMode='login',currentUser=null;
+let db=null;
+let products=[];
+let cart={};
+let category='সব পণ্য';
+let authMode='login';
+let currentUser=null;
+let appliedCoupon='';
+let couponDiscount=0;
 
 const $=id=>document.getElementById(id);
 const money=n=>'৳'+Number(n||0).toLocaleString('en-US');
 
-function notify(msg){alert(msg)}
+function esc(s){
+return String(s??'').replace(/[&<>"']/g,c=>({
+'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'
+}[c]));
+}
 
 function ready(){
-if(!cfg.SUPABASE_URL||cfg.SUPABASE_URL.includes('YOUR_')||!cfg.SUPABASE_ANON_KEY||cfg.SUPABASE_ANON_KEY.includes('YOUR_')){
-$('productGrid').innerHTML='';
+if(!cfg.SUPABASE_URL||!cfg.SUPABASE_ANON_KEY){
 $('empty').classList.remove('hidden');
-$('empty').innerHTML='ওয়েবসাইট চালু করতে config.js ফাইলে Supabase Project URL ও anon key বসাতে হবে।';
+$('empty').textContent='Supabase configuration পাওয়া যায়নি।';
 return false;
 }
 db=supabase.createClient(cfg.SUPABASE_URL,cfg.SUPABASE_ANON_KEY);
 return true;
 }
 
-async function load(){
-if(!db)return;
-const {data,error}=await db.from('products').select('*').eq('active',true).order('created_at',{ascending:false});
-if(error){
-console.error(error);
-$('empty').classList.remove('hidden');
-$('empty').textContent='পণ্য লোড হয়নি। ডাটাবেস সেটআপ ও ইন্টারনেট পরীক্ষা করুন।';
-return;
-}
-products=data||[];
-render();
-}
-
 function price(p){
 return Number(p.base_price)+Number(cfg.MARKUP_TAKA||5);
 }
 
+async function load(){
+let {data,error}=await db.from('products')
+.select('*').eq('active',true)
+.order('created_at',{ascending:false});
+
+if(error){
+$('empty').classList.remove('hidden');
+$('empty').textContent=error.message;
+return;
+}
+
+products=data||[];
+render();
+}
+
 function render(){
 let q=$('search').value.trim().toLowerCase();
-let filtered=products.filter(p=>(category==='সব পণ্য'||p.category===category)&&(!q||(p.name+' '+(p.description||'')+' '+(p.category||'')).toLowerCase().includes(q)));
+
+let filtered=products.filter(p=>
+(category==='সব পণ্য'||p.category===category)&&
+(!q||(p.name+' '+(p.description||'')+' '+p.category).toLowerCase().includes(q))
+);
 
 $('productTotal').textContent=filtered.length+'টি পণ্য';
 $('empty').classList.toggle('hidden',filtered.length>0);
 
 $('productGrid').innerHTML=filtered.map(p=>`
 <article class="card">
-<img class="product-img" src="${esc(p.image_url||'https://placehold.co/600x450?text=Gen+Z+Shop')}" onerror="this.src='https://placehold.co/600x450?text=Gen+Z+Shop'" alt="${esc(p.name)}">
+<img class="product-img" src="${esc(p.image_url||'https://placehold.co/600x450?text=Gen+Z+Shop')}" alt="${esc(p.name)}">
 <div class="p-3">
 <span class="pill">${esc(p.category||'অন্যান্য')}</span>
 <h3 class="font-bold mt-2 min-h-12">${esc(p.name)}</h3>
@@ -193,21 +239,41 @@ $('productGrid').innerHTML=filtered.map(p=>`
 </article>`).join('');
 
 let cats=['সব পণ্য',...new Set(products.map(p=>p.category).filter(Boolean))];
-$('categories').innerHTML=cats.map(c=>`
-<button onclick="setCat('${esc(c)}')" class="pill whitespace-nowrap ${category===c?'!bg-purple-700 !text-white':''}">${esc(c)}</button>`).join('');
-}
 
-function esc(s){
-return String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+$('categories').innerHTML=cats.map(c=>`
+<button onclick="setCat('${esc(c)}')" class="pill whitespace-nowrap">${esc(c)}</button>
+`).join('');
 }
 
 window.setCat=c=>{category=c;render()};
-window.addCart=id=>{cart[id]=(cart[id]||0)+1;cartUpdate()};
+
+window.addCart=id=>{
+cart[id]=(cart[id]||0)+1;
+resetCoupon();
+cartUpdate();
+};
+
+function getItems(){
+return Object.entries(cart)
+.map(([id,n])=>({p:products.find(x=>x.id===id),n}))
+.filter(x=>x.p);
+}
+
+function subtotal(){
+return getItems().reduce((s,x)=>s+price(x.p)*x.n,0);
+}
+
+function resetCoupon(){
+appliedCoupon='';
+couponDiscount=0;
+$('couponInput').value='';
+$('couponMsg').textContent='';
+}
 
 function cartUpdate(){
-$('cartCount').textContent=Object.values(cart).reduce((a,b)=>a+b,0);
-let items=Object.entries(cart).map(([id,n])=>({p:products.find(x=>x.id===id),n})).filter(x=>x.p);
-let total=items.reduce((s,x)=>s+price(x.p)*x.n,0);
+let items=getItems();
+
+$('cartCount').textContent=items.reduce((a,x)=>a+x.n,0);
 
 $('cartItems').innerHTML=items.length?items.map(x=>`
 <div class="flex justify-between items-center py-2 border-b">
@@ -221,46 +287,138 @@ $('cartItems').innerHTML=items.length?items.map(x=>`
 </div>
 </div>`).join(''):'কার্ট খালি।';
 
-$('cartTotal').textContent=money(total);
+let total=subtotal();
+
+$('cartSubtotal').textContent=money(total);
+$('discountAmount').textContent=money(couponDiscount);
+$('cartTotal').textContent=money(Math.max(0,total-couponDiscount));
 }
 
 window.qty=(id,n)=>{
 cart[id]=(cart[id]||0)+n;
 if(cart[id]<=0)delete cart[id];
+resetCoupon();
 cartUpdate();
 };
+
+async function applyCoupon(){
+let code=$('couponInput').value.trim().toUpperCase();
+let total=subtotal();
+
+couponDiscount=0;
+appliedCoupon='';
+
+if(!code){
+$('couponMsg').textContent='কুপন কোড লিখুন।';
+$('couponMsg').className='coupon-error text-sm mt-2';
+cartUpdate();
+return;
+}
+
+if(!total){
+$('couponMsg').textContent='কার্ট খালি।';
+return;
+}
+
+let {data:{user}}=await db.auth.getUser();
+
+if(!user){
+$('couponMsg').textContent='কুপন ব্যবহার করতে আগে লগইন করুন।';
+$('couponMsg').className='coupon-error text-sm mt-2';
+show('authModal');
+return;
+}
+
+if(code==='NIROB 007'){
+if(total<300){
+return couponError('এই কুপন ব্যবহার করতে কমপক্ষে ৳৩০০ অর্ডার লাগবে।');
+}
+couponDiscount=40;
+}
+
+else if(code==='SIFAT 0242'){
+if(total<500){
+return couponError('এই কুপন ব্যবহার করতে কমপক্ষে ৳৫০০ অর্ডার লাগবে।');
+}
+couponDiscount=80;
+}
+
+else if(code==='NIROB 00'){
+couponDiscount=Math.round(total*0.05*100)/100;
+}
+
+else{
+return couponError('ভুল কুপন কোড!');
+}
+
+if(code==='NIROB 007'||code==='SIFAT 0242'){
+let {data,error}=await db.from('coupon_redemptions')
+.select('id')
+.eq('user_id',user.id)
+.eq('coupon_code',code)
+.limit(1);
+
+if(error)return couponError('কুপন যাচাই করা যাচ্ছে না।');
+
+if(data&&data.length){
+return couponError('এই কুপন আগে ব্যবহার করেছেন!');
+}
+}
+
+appliedCoupon=code;
+
+$('couponMsg').textContent='অভিনন্দন! '+money(couponDiscount)+' ছাড় পেয়েছেন।';
+$('couponMsg').className='coupon-success text-sm mt-2';
+
+cartUpdate();
+}
+
+function couponError(msg){
+appliedCoupon='';
+couponDiscount=0;
+$('couponMsg').textContent=msg;
+$('couponMsg').className='coupon-error text-sm mt-2';
+cartUpdate();
+}
 
 function show(id){$(id).classList.add('show')}
 function hide(id){$(id).classList.remove('show')}
 
-$('search').addEventListener('input',render);
+$('search').oninput=render;
 $('allCats').onclick=()=>{category='সব পণ্য';render()};
 $('cartBtn').onclick=()=>{cartUpdate();show('cartModal')};
 $('accountBtn').onclick=()=>show('authModal');
+$('applyCoupon').onclick=applyCoupon;
 
 document.querySelectorAll('.close').forEach(b=>b.onclick=()=>{
 hide('authModal');
 hide('cartModal');
 });
 
-$('loginTab').onclick=()=>mode('login');
-$('signupTab').onclick=()=>mode('signup');
-
 function mode(m){
 authMode=m;
-$('loginTab').className='btn flex-1 '+(m==='login'?'primary':'bg-purple-50 text-purple-800');
-$('signupTab').className='btn flex-1 '+(m==='signup'?'primary':'bg-purple-50 text-purple-800');
+$('loginTab').className='btn flex-1 '+(m==='login'?'primary':'bg-purple-50');
+$('signupTab').className='btn flex-1 '+(m==='signup'?'primary':'bg-purple-50');
 $('authSubmit').textContent=m==='login'?'লগইন করুন':'অ্যাকাউন্ট তৈরি করুন';
 $('authMsg').textContent='';
 }
 
+$('loginTab').onclick=()=>mode('login');
+$('signupTab').onclick=()=>mode('signup');
+
 $('authForm').onsubmit=async e=>{
 e.preventDefault();
-if(!db)return;
+
 let email=$('authEmail').value;
 let password=$('authPassword').value;
-let r=authMode==='login'?await db.auth.signInWithPassword({email,password}):await db.auth.signUp({email,password});
-$('authMsg').textContent=r.error?r.error.message:(authMode==='signup'?'ইমেইল যাচাই করে অ্যাকাউন্ট চালু করুন।':'লগইন সফল।');
+
+let r=authMode==='login'
+?await db.auth.signInWithPassword({email,password})
+:await db.auth.signUp({email,password});
+
+$('authMsg').textContent=r.error?r.error.message:
+(authMode==='signup'?'ইমেইল যাচাই করে অ্যাকাউন্ট চালু করুন।':'লগইন সফল।');
+
 if(!r.error&&authMode==='login'){
 currentUser=r.data.user;
 $('accountBtn').textContent='আমার অ্যাকাউন্ট';
@@ -270,64 +428,69 @@ setTimeout(()=>hide('authModal'),600);
 
 $('checkout').onclick=async()=>{
 if(!db)return;
+
 let {data:{user}}=await db.auth.getUser();
+
 if(!user){
 $('cartMsg').textContent='অর্ডার করতে আগে লগইন করুন।';
 show('authModal');
 return;
 }
 
-let rows=Object.entries(cart).map(([id,quantity])=>({p:products.find(p=>p.id===id),quantity})).filter(x=>x.p);
+let rows=getItems();
+
 if(!rows.length){
 $('cartMsg').textContent='কার্ট খালি।';
 return;
 }
 
-let total=rows.reduce((s,x)=>s+price(x.p)*x.quantity,0);
 let name=prompt('আপনার নাম লিখুন');
 if(!name)return;
+
 let phone=prompt('মোবাইল নম্বর লিখুন');
 if(!phone)return;
+
 let address=prompt('সম্পূর্ণ ডেলিভারি ঠিকানা লিখুন');
 if(!address)return;
 
-let {data:order,error}=await db.from('orders').insert({
-user_id:user.id,
-customer_name:name,
-phone,
-address,
-total,
-status:'Pending'
-}).select().single();
+$('checkout').disabled=true;
+$('checkout').textContent='অর্ডার হচ্ছে...';
+
+let payload=rows.map(x=>({
+product_id:x.p.id,
+quantity:x.n
+}));
+
+let {data,error}=await db.rpc('place_genz_order',{
+p_customer_name:name,
+p_phone:phone,
+p_address:address,
+p_items:payload,
+p_coupon_code:appliedCoupon||null
+});
+
+$('checkout').disabled=false;
+$('checkout').textContent='অর্ডার সম্পন্ন করুন';
 
 if(error){
 $('cartMsg').textContent=error.message;
 return;
 }
 
-let lines=rows.map(x=>({
-order_id:order.id,
-product_id:x.p.id,
-product_name:x.p.name,
-unit_price:price(x.p),
-quantity:x.quantity
-}));
-
-let result=await db.from('order_items').insert(lines);
-
-if(result.error){
-$('cartMsg').textContent='অর্ডার তৈরি হয়েছে, তবে পণ্যের তালিকা সংরক্ষণে সমস্যা: '+result.error.message;
-return;
-}
-
 cart={};
+resetCoupon();
 cartUpdate();
-$('cartMsg').textContent='অর্ডার সফলভাবে গ্রহণ করা হয়েছে! অর্ডার নম্বর: '+order.id;
+
+$('cartMsg').textContent=
+'অর্ডার সফল! অর্ডার নম্বর: '+data.order_id+
+' | ছাড়: '+money(data.discount)+
+' | পরিশোধ: '+money(data.total);
 };
 
 $('year').textContent=new Date().getFullYear();
 
 if(ready()){
+
 db.auth.getSession().then(({data})=>{
 if(data.session){
 currentUser=data.session.user;
@@ -343,6 +506,5 @@ $('accountBtn').textContent=currentUser?'আমার অ্যাকাউন�
 load();
 }
 </script>
-
 </body>
 </html>
